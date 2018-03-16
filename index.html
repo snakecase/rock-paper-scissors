@@ -10,7 +10,7 @@
 
 </body>
 <script>
-    //Returns random hand name as string
+    // Returns a random hand as a string
     function computerPlay() {
         let randomNumber = Math.random();
 
@@ -22,7 +22,8 @@
             return `scissors`;
         }
     }
-    //Prompts for input of a hand. Accepts only legit hand names (case-insensitive), otherwise keeps prompting
+
+    // Prompts for input of a hand. Accepts only legit hand names, otherwise keeps prompting
     function userPlay() {
         let userInput;
         let result = isHand();
@@ -30,8 +31,9 @@
         function isHand() {
             userInput = prompt(`Pick a hand:`);
 
+            // In case user presses Cancel or ESC key
             if (userInput === null) {
-                return;
+                return `canceled`;
             }
 
             userInput = userInput.toLowerCase();
@@ -51,9 +53,12 @@
 
         return result;
     }
-    //Takes two arguments and returns a winner amongst them
+
+    // Takes two arguments and returns a winner amongst them
     function playRound(computerPlay, userPlay) {
-        if (computerPlay === userPlay) {
+        if (userPlay === `canceled`) {
+            return `canceled`;
+        } else if (computerPlay === userPlay) {
             return `draw`;
         }
         // Check Rock versus ...
@@ -69,7 +74,8 @@
             return (userPlay === `paper`) ? `computer` : `user`;
         }
     }
-    //Iterates playRound() function ${num} of times, scores each iteration and returns the winner of the game
+
+    // Iterates playRound() function ${num} of times, scores each iteration and returns the winner of the game with final scores
     function game(num) {
         let computerScore = 0;
         let userScore = 0;
@@ -78,7 +84,7 @@
             console.log(`Round ${i}: ${roundResult}`);
             if (roundResult === `computer`) {
                 computerScore++;
-            } else {
+            } else if (roundResult === `user`) {
                 userScore++;
             }
         }
