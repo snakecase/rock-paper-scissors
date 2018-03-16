@@ -6,10 +6,87 @@
     <title>Rock-paper-scissors</title>
 </head>
 
-<body></body>
+<body>
 
+</body>
 <script>
+    //Returns random hand name as string
+    function computerPlay() {
+        let randomNumber = Math.random();
 
+        if (randomNumber <= 0.33) {
+            return `rock`;
+        } else if (randomNumber > 0.66) {
+            return `paper`;
+        } else {
+            return `scissors`;
+        }
+    }
+    //Prompts for input of a hand. Accepts only legit hand names (case-insensitive), otherwise keeps prompting
+    function userPlay() {
+        let userInput;
+        let result = isHand();
+
+        function isHand() {
+            userInput = prompt(`Pick a hand:`);
+
+            if (userInput === null) {
+                return;
+            }
+
+            userInput = userInput.toLowerCase();
+            let hands = [`rock`, `paper`, `scissors`];
+
+            if (hands.indexOf(userInput) > -1) {
+                return userInput;
+            } else {
+                userInput = undefined;
+            }
+        }
+
+        while (userInput === undefined || userInput === ``) {
+            alert(`Please input a correct hand ("Rock", "Paper" or "Scissors")`);
+            result = isHand();
+        }
+
+        return result;
+    }
+    //Takes two arguments and returns a winner amongst them
+    function playRound(computerPlay, userPlay) {
+        if (computerPlay === userPlay) {
+            return `draw`;
+        }
+        // Check Rock versus ...
+        else if (computerPlay === `rock`) {
+            return (userPlay === `scissors`) ? `computer` : `user`;
+        }
+        // Check Paper versus ...
+        else if (computerPlay === `paper`) {
+            return (userPlay === `rock`) ? `computer` : `user`;
+        }
+        // Check Scissors versus ...
+        else {
+            return (userPlay === `paper`) ? `computer` : `user`;
+        }
+    }
+    //Iterates playRound() function ${num} of times, scores each iteration and returns the winner of the game
+    function game(num) {
+        let computerScore = 0;
+        let userScore = 0;
+        for (i = 1; i <= num; i++) {
+            let roundResult = playRound(computerPlay(), userPlay());
+            console.log(`Round ${i}: ${roundResult}`);
+            if (roundResult === `computer`) {
+                computerScore++;
+            } else {
+                userScore++;
+            }
+        }
+        let winner = (computerScore === userScore) ? `Draw!` :
+            (computerScore > userScore) ? `Computer won with the score of ${computerScore} against ${userScore}!` :
+                `You won with the score of ${userScore} against ${computerScore}! Congratulations!`;
+        console.log(winner);
+    }
 </script>
 
 </html>
