@@ -13,45 +13,27 @@
     // Returns a random hand as a string
     function computerPlay() {
         let randomNumber = Math.random();
-
-        if (randomNumber <= 0.33) {
-            return `rock`;
-        } else if (randomNumber > 0.66) {
-            return `paper`;
-        } else {
-            return `scissors`;
-        }
+        return (randomNumber <= 0.33) ? `rock` : (randomNumber > 0.66) ? `paper` : `scissors`;
     }
 
     // Prompts for input of a hand. Accepts only legit hand names, otherwise keeps prompting
     function userPlay() {
-        let userInput;
-        let result = isHand();
+        let userInput = prompt(`Pick a hand:`);
 
-        function isHand() {
-            userInput = prompt(`Pick a hand:`);
-
-            // In case user presses Cancel or ESC key
-            if (userInput === null) {
-                return `canceled`;
-            }
-
-            userInput = userInput.toLowerCase();
-            let hands = [`rock`, `paper`, `scissors`];
-
-            if (hands.indexOf(userInput) > -1) {
-                return userInput;
-            } else {
-                userInput = undefined;
-            }
+        // In case user presses Cancel or ESC key
+        if (userInput === null) {
+            return `canceled`;
         }
 
-        while (userInput === undefined || userInput === ``) {
+        userInput = userInput.toLowerCase();
+        let hands = [`rock`, `paper`, `scissors`];
+
+        if (hands.indexOf(userInput) > -1) {
+            return userInput;
+        } else {
             alert(`Please input a correct hand ("Rock", "Paper" or "Scissors")`);
-            result = isHand();
+            return userPlay();
         }
-
-        return result;
     }
 
     // Takes two arguments and returns a winner amongst them
