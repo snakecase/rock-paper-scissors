@@ -13,10 +13,13 @@
     // Returns a random hand as a string
     function computerPlay() {
         let randomNumber = Math.random();
-        return (randomNumber <= 0.33) ? `rock` : (randomNumber > 0.66) ? `paper` : `scissors`;
+        
+        return (randomNumber <= 0.33) ? `rock` :
+        (randomNumber > 0.66) ? `paper` : `scissors`;
     }
 
-    // Prompts for input of a hand. Accepts only legit hand names, otherwise keeps prompting
+    // Prompts for input of a hand. Accepts only legit hand names,
+    // otherwise keeps prompting
     function userPlay() {
         let userInput = prompt(`Pick a hand:`);
 
@@ -57,7 +60,8 @@
         }
     }
 
-    // Iterates playRound() function ${num} of times, scores each iteration and returns the winner of the game with final scores
+    // Iterates playRound() function ${num} of times,
+    // scores each iteration and returns the winner of the game with final scores
     function game(num) {
         let computerScore = 0;
         let userScore = 0;
@@ -70,10 +74,17 @@
                 userScore++;
             }
         }
-        let winner = (computerScore === userScore) ? `Draw!` :
-            (computerScore > userScore) ? `Computer won with the score of ${computerScore} against ${userScore}!` :
-                `You won with the score of ${userScore} against ${computerScore}! Congratulations!`;
-        console.log(winner);
+
+        if (computerScore === userScore) {
+            console.log(`Draw!`);
+            return `draw`;
+        } else if (computerScore > userScore) {
+            console.log(`Computer won with the score of ${computerScore} against ${userScore}!`);
+            return `computer`;
+        } else {
+            console.log(`You won with the score of ${userScore} against ${computerScore}! Congratulations!`);
+            return `user`;
+        }
     }
 </script>
 
