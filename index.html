@@ -10,14 +10,14 @@
 
 </body>
 <script>
-    function computerPlay() {
-        let randomNumber = Math.random();
+    const computerPlay = function () {
+        const randomNumber = Math.random();
 
         return (randomNumber <= 0.33) ? `rock` :
             (randomNumber > 0.66) ? `paper` : `scissors`;
     }
 
-    function userPlay() {
+    const userPlay = function () {
         let userInput = prompt(`Pick a hand:`);
 
         // In case user presses Cancel or ESC key
@@ -26,7 +26,7 @@
         }
 
         userInput = userInput.toLowerCase();
-        let hands = [`rock`, `paper`, `scissors`];
+        const hands = [`rock`, `paper`, `scissors`];
 
         if (hands.indexOf(userInput) > -1) {
             return userInput;
@@ -37,7 +37,7 @@
         }
     }
 
-    function playRound(computerPlay, userPlay) {
+    const playRound = function (computerPlay, userPlay) {
         if (userPlay === `canceled`) {
             return `canceled`;
         } else if (computerPlay === userPlay) {
@@ -59,12 +59,12 @@
 
     // Iterates playRound() function ${num} of times,
     // scores each iteration and returns the winner of the game with final scores
-    function game(num) {
+    const game = function (num) {
         let computerScore = 0;
         let userScore = 0;
 
         for (i = 1; i <= num; i++) {
-            let roundResult = playRound(computerPlay(), userPlay());
+            const roundResult = playRound(computerPlay(), userPlay());
             console.log(`Round ${i}: ${roundResult}`);
             if (roundResult === `computer`) {
                 computerScore++;
