@@ -67,4 +67,4 @@ const game = function(e) {
 };
 
 const btns = document.querySelectorAll(`button`);
-btns.forEach(button => addEventListener(`click`, game));
+btns.forEach(button => button.addEventListener(`click`, game));
