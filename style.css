@@ -1,0 +1,33 @@
+.buttons-div {
+    width: 15%;
+    text-align: center;
+    margin: auto;
+}
+button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+.results-div {
+    width: 15%;
+    margin: 1% auto;
+    border: 2px solid gray;
+    padding: 2px 0 4px 6px;
+}
+
+h3 {
+    margin: 0 0 5px 0;
+}
+
+p {
+    margin: 0;
+}
